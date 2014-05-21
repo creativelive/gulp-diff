@@ -1,6 +1,6 @@
 {
   "name": "gulp-diff",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Show diffs for files in the stream against those in a target directory",
   "main": "index.js",
   "scripts": {
