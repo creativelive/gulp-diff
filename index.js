@@ -11,7 +11,7 @@ exports.diff = function diff(dest) {
     if (file.isNull()) {
       return cb(null, file);
     }
-    var compareFile = path.resolve(dest || process.cwd(), file.relative);
+    var compareFile = path.resolve(dest || file.base, file.relative);
     fs.stat(compareFile, function(err, stat) {
       if (err) {
         return cb(err);
