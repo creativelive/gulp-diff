@@ -1,0 +1,42 @@
+{
+  "name": "gulp-diff",
+  "version": "0.0.1",
+  "description": "gulp plugin to show file diffs",
+  "main": "index.js",
+  "scripts": {
+    "test": "gulp lint && gulp test"
+  },
+  "author": "Matthew Hadley",
+  "license": "MIT",
+  "dependencies": {
+    "diff": "^1.0.8",
+    "gulp-util": "^2.2.14",
+    "through2": "^0.4.1",
+    "cli-color": "^0.3.2",
+    "event-stream": "^3.1.5"
+  },
+  "devDependencies": {
+    "gulp": "^3.6.2",
+    "tape": "^2.13.1",
+    "gulp-insert": "^0.3.0",
+    "gulp-eslint": "git+ssh://git@github.com:diffsky/gulp-eslint.git",
+    "gulp-jsbeautifier": "0.0.2",
+    "minimist": "^0.1.0"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "keywords": [
+    "gulpplugin",
+    "diff",
+    "diffs"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/creativelive/gulp-diff.git"
+  },
+  "bugs": {
+    "url": "https://github.com/creativelive/gulp-diff/issues"
+  },
+  "homepage": "https://github.com/creativelive/gulp-diff"
+}
