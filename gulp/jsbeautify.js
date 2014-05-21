@@ -14,7 +14,7 @@ module.exports = function(gulp, gwd, conf) {
         config: '.jsbeautifyrc',
         mode: 'VERIFY_AND_WRITE'
       }))
-      .pipe(diff('.'))
+      .pipe(diff())
       .pipe(diffReporter());
     if (conf.write) {
       // if task is run with `--write` then overwrite source files

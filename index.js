@@ -5,23 +5,16 @@ var diffLines = require('diff').diffLines;
 var clc = require('cli-color');
 var fs = require('fs');
 var path = require('path');
-var gutil = require('gulp-util');
-var PluginError = gutil.PluginError;
-var pkg = require('./package');
 
-exports.diff = function diff(dest, opt) {
-  if (!dest) {
-    throw new PluginError(pkg.name, 'missing compare path');
-  }
-  opt = opt || {};
+exports.diff = function diff(dest) {
   return through2.obj(function(file, enc, cb) {
     if (file.isNull()) {
       return cb(null, file);
     }
-    var compareFile = path.resolve(opt.cwd || process.cwd(), dest, file.relative);
+    var compareFile = path.resolve(dest || process.cwd(), file.relative);
     fs.stat(compareFile, function(err, stat) {
       if (err) {
-        return (err);
+        return cb(err);
       }
       if (stat && !stat.isDirectory()) {
         fs.readFile(compareFile, 'utf8', function(err, contents) {
@@ -31,6 +24,7 @@ exports.diff = function diff(dest, opt) {
           if (contents !== String(file.contents)) {
             try {
               file.diff = diffLines(fs.readFileSync(compareFile, 'utf8'), String(file.contents));
+
             } catch (err) {
               cb('failed to diff file: ' + err.message);
             }

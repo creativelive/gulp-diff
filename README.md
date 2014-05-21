@@ -26,7 +26,7 @@ gulp.task('js-beautify', function() {
       config: '.jsbeautifyrc',
       mode: 'VERIFY_AND_WRITE'
     }))
-    .pipe(diff('.'))
+    .pipe(diff(/* 'target directory to diff against' or `process.cwd()` */))
     .pipe(diffReporter())
     .on('data', function(data) {
       if (data.diff && Object.keys(data.diff).length) {

@@ -1,7 +1,7 @@
 {
   "name": "gulp-diff",
-  "version": "0.0.3",
-  "description": "gulp plugin to show file diffs",
+  "version": "0.0.4",
+  "description": "Show diffs for files in the stream against those in a target directory",
   "main": "index.js",
   "scripts": {
     "test": "gulp lint && gulp test"

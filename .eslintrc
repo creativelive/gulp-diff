@@ -1,9 +1,9 @@
 {
   "rules": {
     "quotes": [1, "single"],
-    "no-unused-vars": [2, {"vars": "local", "args": "none"}],
+    "no-unused-vars": [2, {"vars": "all", "args": "none"}],
     "consistent-this": [2, "self"],
-    "no-use-before-define": [2, "nofunc"]
+    "no-use-before-define": [2, "nofunc"],
   },
   "globals": {},
   "env":{
