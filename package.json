@@ -1,6 +1,6 @@
 {
   "name": "gulp-diff",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "gulp plugin to show file diffs",
   "main": "index.js",
   "scripts": {
@@ -19,7 +19,7 @@
     "gulp": "^3.6.2",
     "tape": "^2.13.1",
     "gulp-insert": "^0.3.0",
-    "gulp-eslint": "git+ssh://git@github.com:diffsky/gulp-eslint.git",
+    "gulp-eslint": "diffsky/gulp-eslint",
     "gulp-jsbeautifier": "0.0.2",
     "minimist": "^0.1.0"
   },
