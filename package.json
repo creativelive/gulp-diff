@@ -1,6 +1,6 @@
 {
   "name": "gulp-diff",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Show diffs for files in the stream against those in a target directory",
   "main": "index.js",
   "scripts": {
@@ -19,9 +19,9 @@
     "gulp": "^3.6.2",
     "tape": "^2.13.1",
     "gulp-insert": "^0.3.0",
-    "gulp-eslint": "diffsky/gulp-eslint",
     "gulp-jsbeautifier": "0.0.2",
-    "minimist": "^0.1.0"
+    "minimist": "^0.1.0",
+    "gulp-eslint": "^0.1.7"
   },
   "directories": {
     "test": "test"
