@@ -4,7 +4,7 @@ var prettify = require('gulp-jsbeautifier');
 var diff = require('..').diff;
 var diffReporter = require('..').reporter;
 
-module.exports = function(gulp, gwd, conf) {
+module.exports = function(gulp, conf) {
   gulp.task('js-beautify', function() {
     var task = gulp.src([
         '!node_modules/**/*.js',
