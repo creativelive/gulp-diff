@@ -16,7 +16,7 @@ module.exports = function(gulp, conf) {
       }))
       .pipe(diff())
       .pipe(diffReporter());
-    if (conf.write) {
+    if (conf.args.write) {
       // if task is run with `--write` then overwrite source files
       task.pipe(gulp.dest('.'));
     } else {
