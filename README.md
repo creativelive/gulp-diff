@@ -1,4 +1,4 @@
-# gulp-diff [![](https://travis-ci.org/creativelive/gulp-diff.png)](https://travis-ci.org/creativelive/gulp-diff)
+# gulp-diff [![](https://travis-ci.org/creativelive/gulp-diff.svg)](https://travis-ci.org/creativelive/gulp-diff)
 
 Gulp task to diff files in the stream against a destination.
 
