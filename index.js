@@ -6,7 +6,7 @@ var clc = require('cli-color');
 var fs = require('fs');
 var path = require('path');
 
-exports.diff = function diff(dest) {
+var diff = function diff(dest) {
   return through2.obj(function(file, enc, cb) {
     if (file.isNull()) {
       return cb(null, file);
@@ -24,7 +24,6 @@ exports.diff = function diff(dest) {
           if (contents !== String(file.contents)) {
             try {
               file.diff = diffLines(fs.readFileSync(compareFile, 'utf8'), String(file.contents));
-
             } catch (err) {
               cb('failed to diff file: ' + err.message);
             }
@@ -42,7 +41,7 @@ exports.diff = function diff(dest) {
   });
 };
 
-exports.reporter = function reporter(opts) {
+var reporter = function reporter(opts) {
   opts = opts || {};
   return through2.obj(function(file, enc, cb) {
     if (file.diff && Object.keys(file.diff).length) {
@@ -69,3 +68,6 @@ function colorLine(ln) {
   }
   return 'blackBright';
 }
+
+module.exports = diff;
+module.exports.reporter = reporter;
