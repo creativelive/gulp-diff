@@ -5,41 +5,51 @@ var diffLines = require('diff').diffLines;
 var clc = require('cli-color');
 var fs = require('fs');
 var path = require('path');
+var PluginError = require('gulp-util').PluginError;
+
+function pluginError(msg) {
+  return new PluginError('gulp-diff', msg);
+}
 
 exports.diff = function diff(dest) {
-  return through2.obj(function(file, enc, cb) {
+  var stream = through2.obj(function(file, enc, cb) {
     if (file.isNull()) {
       return cb(null, file);
     }
     var compareFile = path.resolve(dest || file.base, file.relative);
     fs.stat(compareFile, function(err, stat) {
       if (err) {
-        return cb(err);
+        stream.emit('error', pluginError('Failed to stat file: ' + err.message));
+        return cb();
       }
       if (stat && !stat.isDirectory()) {
         fs.readFile(compareFile, 'utf8', function(err, contents) {
           if (err) {
-            cb('failed to read file: ' + err.message);
+            stream.emit('error', pluginError('Failed to read file: ' + err.message));
+            return cb();
           }
           if (contents !== String(file.contents)) {
             try {
               file.diff = diffLines(fs.readFileSync(compareFile, 'utf8'), String(file.contents));
 
             } catch (err) {
-              cb('failed to diff file: ' + err.message);
+              stream.emit('error', pluginError('Failed to diff file: ' + err.message));
+              return cb();
             }
           }
           return cb(null, file);
         });
       } else {
         if (!stat) {
-          return cb('failed to find file: ' + compareFile);
+          stream.emit('error', pluginError('Failed to find file: ' + compareFile));
+          return cb();
         } else {
           return cb(null, file);
         }
       }
     });
   });
+  return stream;
 };
 
 exports.reporter = function reporter(opts) {
