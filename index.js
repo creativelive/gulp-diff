@@ -56,8 +56,13 @@ exports.reporter = function reporter(opts) {
   opts = opts || {};
   return through2.obj(function(file, enc, cb) {
     if (file.diff && Object.keys(file.diff).length) {
-      console.log('\n' + clc.underline(file.path), '\n');
-      console.log(file.diff.map(formatLine).join(''));
+      if (!opts.quiet) {
+        console.log('\n' + clc.underline(file.path), '\n');
+        console.log(file.diff.map(formatLine).join(''));
+      }
+      if (opts.fail) {
+        this.emit('error', pluginError('Files differ'));
+      }
     }
     return cb(null, file);
   });

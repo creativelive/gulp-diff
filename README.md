@@ -27,20 +27,7 @@ gulp.task('js-beautify', function() {
       mode: 'VERIFY_AND_WRITE'
     }))
     .pipe(diff(/* 'target directory to diff against', defaults to diff against original source file */))
-    .pipe(diffReporter())
-    .on('data', function(data) {
-      if (data.diff && Object.keys(data.diff).length) {
-        // record that there have been errors
-        gulp.fail = true;
-      }
-    });
-});
-
-process.on('exit', function() {
-  if (gulp.fail) {
-    // return non-zero exit code
-    process.exit(1);
-  }
+    .pipe(diffReporter({ fail: true }));
 });
 
 ```
