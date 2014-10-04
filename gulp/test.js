@@ -1,8 +1,7 @@
 'use strict';
 
 var insert = require('gulp-insert');
-var diff = require('..').diff;
-var diffReporter = require('..').reporter;
+var diff = require('..');
 
 var expected = [{
   value: 'HELLO\nWORLD\n',
@@ -41,7 +40,7 @@ module.exports = function(gulp) {
           gulp.fail = true;
         }
       })
-      .pipe(diffReporter());
+      .pipe(diff.reporter());
   });
 
   gulp.task('diff-none', function() {
@@ -57,6 +56,6 @@ module.exports = function(gulp) {
           gulp.fail = true;
         }
       })
-      .pipe(diffReporter());
+      .pipe(diff.reporter());
   });
 };
