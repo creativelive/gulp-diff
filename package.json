@@ -15,7 +15,7 @@
     {
       "name" : "Miëtek Bak",
       "url" : "https://github.com/mietek"
-    },
+    }
   ],
   "license": "MIT",
   "dependencies": {
