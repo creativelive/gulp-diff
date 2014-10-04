@@ -8,14 +8,8 @@
   },
   "author": "Matthew Hadley (https://github.com/diffsky)",
   "contributors": [
-    {
-      "name" : "Alexander Beletsky",
-      "url" : "https://github.com/alexanderbeletsky"
-    },
-    {
-      "name" : "Miëtek Bak",
-      "url" : "https://github.com/mietek"
-    }
+    "Alexander Beletsky (https://github.com/alexanderbeletsky)",
+    "Miëtek Bak (https://github.com/mietek)"
   ],
   "license": "MIT",
   "dependencies": {
