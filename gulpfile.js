@@ -18,10 +18,6 @@ require('fs').readdirSync('./gulp').forEach(function(file) {
   }
 });
 
-// alias
-gulp.task('lint', ['eslint', 'js-beautify'], function() {});
-gulp.task('default', ['lint'], function() {});
-
 process.on('exit', function() {
   if (gulp.fail) {
     // return non-zero exit code

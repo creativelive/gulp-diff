@@ -71,3 +71,4 @@ function colorLine(ln) {
 
 module.exports = diff;
 module.exports.reporter = reporter;
+module.exports.diff = diff;

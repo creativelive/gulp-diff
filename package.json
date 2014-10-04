@@ -1,10 +1,10 @@
 {
   "name": "gulp-diff",
-  "version": "0.1.4",
+  "version": "0.2.0",
   "description": "Show diffs for files in the stream against those in a target directory",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/gulp/bin/gulp.js lint && ./node_modules/gulp/bin/gulp.js test"
+    "test": "alias gulp=./node_modules/gulp/bin/gulp.js;gulp beautify && gulp eslint && gulp test"
   },
   "author": "Matthew Hadley (https://github.com/diffsky)",
   "license": "MIT",

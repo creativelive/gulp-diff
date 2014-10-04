@@ -1,11 +1,10 @@
 'use strict';
 
 var prettify = require('gulp-jsbeautifier');
-var diff = require('..').diff;
-var diffReporter = require('..').reporter;
+var diff = require('..');
 
 module.exports = function(gulp, conf) {
-  gulp.task('js-beautify', function() {
+  gulp.task('beautify', function() {
     var task = gulp.src([
         '!node_modules/**/*.js',
         '**/*.js'
@@ -15,7 +14,7 @@ module.exports = function(gulp, conf) {
         mode: 'VERIFY_AND_WRITE'
       }))
       .pipe(diff())
-      .pipe(diffReporter());
+      .pipe(diff.reporter());
     if (conf.args.write) {
       // if task is run with `--write` then overwrite source files
       task.pipe(gulp.dest('.'));
