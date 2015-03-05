@@ -17,15 +17,15 @@ var diff = function diff(dest) {
       return cb(null, file);
     }
     var compareFile = path.resolve(dest || file.base, file.relative);
-    fs.stat(compareFile, function(err, stat) {
-      if (err) {
-        stream.emit('error', pluginError('Failed to stat file: ' + err.message));
+    fs.stat(compareFile, function(errStat, stat) {
+      if (errStat) {
+        stream.emit('error', pluginError('Failed to stat file: ' + errStat.message));
         return cb();
       }
       if (stat && !stat.isDirectory()) {
-        fs.readFile(compareFile, 'utf8', function(err, contents) {
-          if (err) {
-            stream.emit('error', pluginError('Failed to read file: ' + err.message));
+        fs.readFile(compareFile, 'utf8', function(errRead, contents) {
+          if (errRead) {
+            stream.emit('error', pluginError('Failed to read file: ' + errRead.message));
             return cb();
           }
           if (contents !== String(file.contents)) {
