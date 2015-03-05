@@ -4,7 +4,7 @@
   "description": "Show diffs for files in the stream against those in a target directory",
   "main": "index.js",
   "scripts": {
-    "test": "alias gulp=./node_modules/gulp/bin/gulp.js;gulp beautify && gulp eslint && gulp test"
+    "test": "gulp beautify && gulp eslint && gulp test"
   },
   "author": "Matthew Hadley (https://github.com/diffsky)",
   "contributors": [
