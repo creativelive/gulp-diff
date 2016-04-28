@@ -57,7 +57,13 @@ var reporter = function reporter(opts) {
     if (file.diff && Object.keys(file.diff).length) {
       if (!opts.quiet) {
         console.log('\n' + clc.underline(file.path), '\n');
-        console.log(file.diff.map(formatLine).join(''));
+
+        var flag = flagParts();
+        var formatLine = lineFormatter(opts);
+        console.log(file.diff
+          .map(flag)
+          .map(formatLine).join('')
+        );
       }
       if (opts.fail) {
         this.emit('error', pluginError('Files differ'));
@@ -67,11 +73,53 @@ var reporter = function reporter(opts) {
   });
 };
 
-function formatLine(part, i) {
-  var indent = '    ';
-  return (!i ? indent : '') + part.value.split('\n').map(function(ln) {
-    return clc[colorLine(part)](ln);
-  }).join('\n' + indent);
+function flagParts() {
+  var previous = null;
+
+  function changed(part) {
+    return part.removed || part.added;
+  }
+
+  return function(part) {
+    if (changed(part) && previous !== null && !changed(previous))
+      previous.before = true;
+
+    if (!changed(part) && previous !== null && changed(previous))
+      part.after = true;
+
+    previous = part;
+    return part;
+  };
+}
+
+function trimPart(part, compact) {
+  var lines = part.value.split('\n');
+  var res = [];
+  if (!compact) return lines;
+
+  if (part.added || part.removed)
+    return lines;
+
+  if (part.before && part.after && lines < 10)
+    return lines;
+
+  if (part.after)
+    res = res.concat(lines.slice(0, 5)).concat(['...']);
+
+  if (part.before)
+    res = res.concat(['...']).concat(lines.slice(-5));
+
+  return res;
+}
+
+function lineFormatter(opts) {
+  return function formatLine(part, i) {
+    var indent = '    ';
+    return (!i ? indent : '') + trimPart(part, opts.compact)
+      .map(function(ln) {
+        return clc[colorLine(part)](ln);
+      }).join('\n' + indent);
+  };
 }
 
 function colorLine(ln) {
