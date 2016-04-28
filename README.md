@@ -23,7 +23,8 @@ gulp.task('js-beautify', function() {
       mode: 'VERIFY_AND_WRITE'
     }))
     .pipe(diff(/* 'target directory to diff against', defaults to diff against original source file */))
-    // emit an error on finding diffs
-    .pipe(diff.reporter({ fail: true }));
+    // fail: emit an error on finding diffs
+    // compact: only show changed and surrounding lines
+    .pipe(diff.reporter({ fail: true, compact: true }));
 });
 ```
