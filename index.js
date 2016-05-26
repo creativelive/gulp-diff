@@ -11,7 +11,7 @@ function pluginError(msg) {
   return new PluginError('gulp-diff', msg);
 }
 
-var diff = function diff(dest) {
+var diff = function diff(dest, opts) {
   var stream = through2.obj(function(file, enc, cb) {
     if (file.isNull()) {
       return cb(null, file);
@@ -30,7 +30,7 @@ var diff = function diff(dest) {
           }
           if (contents !== String(file.contents)) {
             try {
-              file.diff = diffLines(fs.readFileSync(compareFile, 'utf8'), String(file.contents));
+              file.diff = diffLines(fs.readFileSync(compareFile, 'utf8'), String(file.contents), opts);
             } catch (err) {
               stream.emit('error', pluginError('Failed to diff file: ' + err.message));
               return cb();
