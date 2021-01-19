@@ -5,7 +5,7 @@ var diffLines = require('diff').diffLines;
 var clc = require('cli-color');
 var fs = require('fs');
 var path = require('path');
-var PluginError = require('gulp-util').PluginError;
+var PluginError = require('plugin-error');
 
 function pluginError(msg) {
   return new PluginError('gulp-diff', msg);
